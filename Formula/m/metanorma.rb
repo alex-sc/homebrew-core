@@ -8,22 +8,23 @@ class Metanorma < Formula
   sha256 "d0ed9a2ed3cb2f3b3196eca7330448ef72f89220d8309955d91681a83e3a5af8"
 
   license "0BSD"
-  revision 1
 
-  depends_on "git"
   depends_on "gflags"
   depends_on "graphviz"
-  depends_on "libxslt" if OS.linux?
-  depends_on "xml2rfc" # required by 'metanorma-ietf' gem
   depends_on "openjdk"
   depends_on "plantuml"
+  depends_on "xml2rfc" # required by 'metanorma-ietf' gem
+
+  on_linux do
+    depends_on "libxslt"
+  end
 
   def install
     platform = if OS.mac?
-                 Hardware::CPU.arm? ? "darwin-arm64" : "darwin-x86_64"
-               elsif OS.linux?
-                 Hardware::CPU.arm? ? "linux-aarch64" : "linux-x86_64"
-               end
+      Hardware::CPU.arm? ? "darwin-arm64" : "darwin-x86_64"
+    elsif OS.linux?
+      Hardware::CPU.arm? ? "linux-aarch64" : "linux-x86_64"
+    end
 
     resource("packed-mn").stage do
       bin.install "metanorma-#{platform}"
@@ -48,7 +49,7 @@ class Metanorma < Formula
   end
 
   test do
-    test_doc = <<~'ADOC'
+    test_doc = <<~ADOC
       = Document title
       Author
       :docfile: test.adoc
