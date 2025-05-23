@@ -20,16 +20,6 @@ class Metanorma < Formula
   end
 
   def install
-    platform = if OS.mac?
-      Hardware::CPU.arm? ? "darwin-arm64" : "darwin-x86_64"
-    elsif OS.linux?
-      Hardware::CPU.arm? ? "linux-aarch64" : "linux-x86_64"
-    end
-
-    resource("packed-mn").stage do
-      bin.install "metanorma-#{platform}"
-    end
-
     ENV.prepend_path "PATH", Formula["libxslt"].opt_bin.to_s if OS.linux?
     ENV.prepend_path "PATH", Formula["libxml2"].opt_bin.to_s if OS.linux?
 
