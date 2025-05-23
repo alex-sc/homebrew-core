@@ -35,8 +35,8 @@ class Metanorma < Formula
 
     (bin / "metanorma").write_env_script(
       bin / "metanorma-#{platform}",
-      JAVA_HOME:  Language::Java.java_home("1.8+"),
-      PATH:       [libexec/"bin", "$PATH"].join(":"),
+      JAVA_HOME: Language::Java.java_home("1.8+"),
+      PATH:      [libexec/"bin", "$PATH"].join(":"),
       )
   end
 
@@ -61,13 +61,13 @@ class Metanorma < Formula
     (testpath / "test-iso.adoc").write(test_doc)
     system bin / "metanorma", "--type", "iso", testpath / "test-iso.adoc",
            "--agree-to-terms"
-    assert_predicate testpath / "test-iso.xml", :exist?
-    assert_predicate testpath / "test-iso.html", :exist?
+    assert_path_exists testpath / "test-iso.xml"
+    assert_path_exists testpath / "test-iso.html"
 
     (testpath / "test-csa.adoc").write(test_doc)
     system bin / "metanorma", "--type", "csa", testpath / "test-csa.adoc",
            "--agree-to-terms"
-    assert_predicate testpath / "test-csa.pdf", :exist?
-    assert_predicate testpath / "test-csa.html", :exist?
+    assert_path_exists testpath / "test-csa.pdf"
+    assert_path_exists testpath / "test-csa.html"
   end
 end
