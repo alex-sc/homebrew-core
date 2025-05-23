@@ -37,7 +37,7 @@ class Metanorma < Formula
       bin / "metanorma-#{platform}",
       JAVA_HOME: Language::Java.java_home("1.8+"),
       PATH:      [libexec/"bin", "$PATH"].join(":"),
-      )
+    )
   end
 
   def caveats
