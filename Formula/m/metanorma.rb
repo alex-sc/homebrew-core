@@ -18,7 +18,7 @@ class Metanorma < Formula
   depends_on "gflags"
   depends_on "graphviz"
   depends_on "libxslt" if OS.linux?
-  depends_on "metanorma/xml2rfc/xml2rfc" # required by 'metanorma-ietf' gem
+  depends_on "xml2rfc" # required by 'metanorma-ietf' gem
   depends_on "openjdk"
   depends_on "plantuml"
 
@@ -33,8 +33,8 @@ class Metanorma < Formula
     else # assume Hardware::CPU.intel
       resource "packed-mn" do
         # > formula-set-version.sh packed-mn-darwin-x86_64 #
-        url "https://github.com/metanorma/packed-mn/releases/download/v1.12.7/metanorma-darwin-x86_64.tgz"
-        sha256 "Not"
+        url "https://github.com/metanorma/packed-mn/releases/download/v1.12.5/metanorma-darwin-x86_64.tgz"
+        sha256 "214ccbaab3691f2fd3f1414e3b3f50c0d2350748c222e2428f579dec0a4ab37e"
         # < formula-set-version.sh packed-mn-darwin-x86_64 #
       end
     end
